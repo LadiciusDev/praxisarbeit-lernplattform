@@ -1,0 +1,9 @@
+services:
+  lernplattform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lernplattform
+    ports:
+      - "8080:80"
+    restart: unless-stopped
