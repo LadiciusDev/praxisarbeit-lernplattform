@@ -123,7 +123,7 @@ flowchart LR
 | **A1** | **Automatisierte Bereitstellung** | Plattform-VM, Ausführungs-VM, privates Netzwerk, Firewall und Betriebssystemkonfiguration werden vollständig durch IaC und Cloud-init bereitgestellt. |
 | **A2** | **Funktionsfähige Lernplattform** | Die Plattform nimmt Testcode entgegen, übermittelt ihn an die interne Ausführungs-VM und zeigt \`stdout\`, \`stderr\` und Exit-Code an. |
 | **A3** | **Schutz der öffentlichen Plattform** | Nur HTTPS (Port 443) und eingeschränkter SSH-Zugriff (Schlüssel, Quell-IP-Filter) sind öffentlich erreichbar. |
-| **A4** | **Isolation der Ausführungs-VM** | Keine öffentliche Primary IP; Verbindung nur über privates Hetzner-Netzwerk. Host-Firewall lässt nur 10.10.1.10 auf Port 8080 zu. |
+| **A4** | **Isolation der Ausführungs-VM** |Die Execution-VM darf keine öffentliche IPv4- oder IPv6-Adresse besitzen. Während der automatisierten Erstkonfiguration darf sie über einen kontrollierten NAT-Zugang der Plattform-VM ausschließlich die für Installation und Image-Bezug notwendigen ausgehenden Verbindungen aufbauen. Nach Abschluss des Provisionings muss der ausgehende Internetzugriff gesperrt sein. Eingehend dürfen ausschließlich definierte Verbindungen von der privaten IP der Plattform-VM zugelassen werden. Der Testcode-Container besitzt keinen Netzwerkzugriff. |
 | **A5** | **Begrenzte Codeausführung** | Ausführung in nicht-privilegiertem Container: \`--network none\`, \`--memory 512m\`, \`--cpus 1\`, Non-Root-User, 10s Timeout. |
 | **A6** | **Logging ohne Geheimnisse** | Protokollierung von Job-ID, Zeitstempel, Dauer und Exit-Code. Keine Speicherung von Quellcode oder Zugangsdaten in Logs. |
 | **A7** | **Reproduzierbarer Lebenszyklus** | Kompletter Lebenszyklus (\`apply → destroy → apply\`) lässt sich ohne Reste und ohne manuelle Nacharbeit durchführen. |
@@ -182,8 +182,8 @@ export const ArchitecturePage: React.FC = () => {
           <button
             onClick={() => handleTabChange('diagram')}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'diagram'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
+              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
               }`}
           >
             <Eye className="h-3.5 w-3.5" />
@@ -193,8 +193,8 @@ export const ArchitecturePage: React.FC = () => {
           <button
             onClick={() => handleTabChange('sequence')}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'sequence'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
+              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
               }`}
           >
             <GitCommit className="h-3.5 w-3.5" />
@@ -204,8 +204,8 @@ export const ArchitecturePage: React.FC = () => {
           <button
             onClick={() => handleTabChange('docs')}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'docs'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
+              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
               }`}
           >
             <FileCode className="h-3.5 w-3.5" />
@@ -215,8 +215,8 @@ export const ArchitecturePage: React.FC = () => {
           <button
             onClick={() => handleTabChange('benchmarks')}
             className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'benchmarks'
-                ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+              ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
+              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
               }`}
           >
             <BarChart3 className="h-3.5 w-3.5 text-cyan-400" />

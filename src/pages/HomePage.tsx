@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ThesisBanner } from '../components/common/ThesisBanner';
 import { LANGUAGES_DATA } from '../data/lessonsData';
-import { 
-  ArrowRight, 
-  BarChart3, 
-  GitBranch, 
-  CheckCircle2, 
-  Terminal, 
-  FileCode, 
+import {
+  ArrowRight,
+  BarChart3,
+  GitBranch,
+  CheckCircle2,
+  Terminal,
+  FileCode,
   Zap,
   BookOpen
 } from 'lucide-react';
