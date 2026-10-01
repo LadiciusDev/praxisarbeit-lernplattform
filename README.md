@@ -87,7 +87,7 @@ flowchart LR
     User["🌐 Benutzer (Browser)"] -->|"HTTPS (:443)"| Nginx["Nginx Webserver<br/><b>Plattform-VM</b> (10.10.1.10)"]
     Nginx -->|"Statische Assets"| SPA["React 19 SPA (Vite)"]
     Nginx -->|"Proxy: /api/execute"| PrivateNet["🔒 Privates Hetzner vSwitch-Netz<br/>(10.10.1.0/24 - Keine Public Route)"]
-    PrivateNet -->|"REST (:8080)"| ExecDaemon["FastAPI Execution Daemon<br/><b>Ausführungs-VM</b> (10.10.1.20)"]
+    PrivateNet -->|"REST (:8081)"| ExecDaemon["FastAPI Execution Daemon<br/><b>Ausführungs-VM</b> (10.10.1.20)"]
     ExecDaemon -->|"docker run --network none"| Sandbox["📦 Ephemere Docker-Sandbox (A5)<br/>• 512 MB RAM • 1.0 CPU<br/>• Read-Only Root • 10s Timeout"]
 ```
 
@@ -96,7 +96,7 @@ flowchart LR
 | Komponente | VM | Interne IP | Offene Ports | Zugriff |
 | :--- | :--- | :--- | :--- | :--- |
 | **Lernplattform (Nginx)** | Plattform-VM | `10.10.1.10` | `80/tcp`, `443/tcp` | Öffentlich (Internet) |
-| **Execution Daemon** | Ausführungs-VM | `10.10.1.20` | `8080/tcp` | Streng limitiert: Nur `10.10.1.10` via vSwitch |
+| **Execution Daemon** | Ausführungs-VM | `10.10.1.20` | `8081/tcp` | Streng limitiert: Nur `10.10.1.10` via vSwitch |
 | **Docker-Sandbox** | Ausführungs-VM | *Keine* (`--net none`) | *Keine* | Isoliert (kein Netzwerkzugriff) |
 
 ---
