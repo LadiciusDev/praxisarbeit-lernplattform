@@ -20,7 +20,7 @@ export const Badge: FC<BadgeProps> = ({
     amber: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     rose: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
     purple: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    slate: 'bg-slate-800 text-slate-300 border-slate-700',
+    slate: 'bg-zinc-900 text-zinc-300 border-white/10',
   };
 
   const sizeStyles = {

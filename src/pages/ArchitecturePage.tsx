@@ -163,65 +163,70 @@ export const ArchitecturePage: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Kopfbereich */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 md:p-8 backdrop-blur-sm space-y-3">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 uppercase tracking-wider">
-          <Network className="h-4 w-4" />
-          <span>Praxisarbeit • Infrastruktur &amp; Sicherheits-Design</span>
+      <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 md:p-8 backdrop-blur-md space-y-4">
+        <div className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 uppercase tracking-wider">
+          <Network className="h-3.5 w-3.5 text-zinc-300" />
+          <span>Infrastruktur &amp; Sicherheits-Design</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-          Soll-Architektur: Hetzner Cloud Zwei-VM-Setup
+        <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+          Hetzner Cloud Zwei-VM-Architektur
         </h1>
-        <p className="text-xs md:text-sm text-slate-300 leading-relaxed max-w-4xl">
-          Hier findest du die vollständige Architektur für den Vergleich von Terraform und OpenTofu.
-          Das Diagramm wird live über <strong>Mermaid Markdown</strong> gerendert und kann direkt als
-          <strong> hochauflösendes PNG</strong> für deine schriftliche 20-seitige Arbeit exportiert werden.
+        <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-3xl">
+          Live-Visualisierung der evaluierten Cloud-Topologie (Plattform-VM und isolierte Ausführungs-VM). 
+          Unterstützt stufenlosen Zoom und wissenschaftlichen Multiformat-Export (SVG/PNG).
         </p>
 
-        {/* Tab-Auswahl */}
-        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/80">
-          <button
-            onClick={() => handleTabChange('diagram')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'diagram'
-              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+        {/* Tab-Auswahl: Minimalist Segmented Control */}
+        <div className="pt-2">
+          <div className="inline-flex flex-wrap items-center gap-1 p-1 rounded-xl bg-zinc-950 border border-white/[0.08]">
+            <button
+              onClick={() => handleTabChange('diagram')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                activeTab === 'diagram'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
-          >
-            <Eye className="h-3.5 w-3.5" />
-            <span>Topologie-Diagramm</span>
-          </button>
+            >
+              <Eye className="h-3.5 w-3.5" />
+              <span>Topologie</span>
+            </button>
 
-          <button
-            onClick={() => handleTabChange('sequence')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'sequence'
-              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+            <button
+              onClick={() => handleTabChange('sequence')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                activeTab === 'sequence'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
-          >
-            <GitCommit className="h-3.5 w-3.5" />
-            <span>Ablauf-Sequenzdiagramm</span>
-          </button>
+            >
+              <GitCommit className="h-3.5 w-3.5" />
+              <span>Sequenzablauf</span>
+            </button>
 
-          <button
-            onClick={() => handleTabChange('docs')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'docs'
-              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+            <button
+              onClick={() => handleTabChange('docs')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                activeTab === 'docs'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
-          >
-            <FileCode className="h-3.5 w-3.5" />
-            <span>Spezifikation &amp; Anforderungen (MDX)</span>
-          </button>
+            >
+              <FileCode className="h-3.5 w-3.5" />
+              <span>Spezifikation (A1–A7)</span>
+            </button>
 
-          <button
-            onClick={() => handleTabChange('benchmarks')}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all ${activeTab === 'benchmarks'
-              ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-              : 'bg-slate-800/80 text-slate-400 hover:text-slate-200 border border-slate-700/60'
+            <button
+              onClick={() => handleTabChange('benchmarks')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                activeTab === 'benchmarks'
+                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
-          >
-            <BarChart3 className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Messwerte &amp; Vergleich (K1–K5)</span>
-          </button>
+            >
+              <BarChart3 className="h-3.5 w-3.5" />
+              <span>Benchmarks (K1–K5)</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -243,44 +248,44 @@ export const ArchitecturePage: React.FC = () => {
             defaultSize="xl"
           />
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 md:p-8 space-y-4 backdrop-blur-sm">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-cyan-400" />
+          <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 md:p-8 space-y-4 backdrop-blur-sm shadow-xl">
+            <h3 className="text-base font-semibold text-white flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-zinc-400" />
               <span>Detailanalyse des Ausführungsablaufs (Anforderungen A2, A5 &amp; A6)</span>
             </h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-zinc-400 leading-relaxed max-w-3xl">
               Das Sequenzdiagramm dokumentiert den lückenlosen Lebenszyklus eines Testauftrags auf der isolierten Ausführungs-VM.
-              Der Daemon verarbeitet jeden Auftrag strikt isoliert nach dem <em>Least-Privilege-Prinzip</em>.
+              Der Daemon verarbeitet jeden Auftrag strikt isoliert nach dem <em className="text-zinc-200">Least-Privilege-Prinzip</em>.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-              <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/60 space-y-2">
-                <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-2">
+              <div className="p-4 rounded-xl border border-white/[0.06] bg-zinc-950/60 space-y-2">
+                <span className="text-[10px] font-mono font-medium text-zinc-300 uppercase bg-white/[0.05] px-2 py-0.5 rounded border border-white/10">
                   Schritt 1–2: Ingress &amp; Validierung
                 </span>
                 <h4 className="text-xs font-semibold text-white">Payload-Schutz &amp; Timing</h4>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
                   Pydantic prüft die Payload-Größe (max. 64 KB). Eine eindeutige Job-UUID wird vergeben und die Hochpräzisions-Zeitmessung gestartet.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/60 space-y-2">
-                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+              <div className="p-4 rounded-xl border border-white/[0.06] bg-zinc-950/60 space-y-2">
+                <span className="text-[10px] font-mono font-medium text-emerald-400 uppercase bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                   Schritt 3–4: Sandbox-Lauf (A5)
                 </span>
-                <h4 className="text-xs font-semibold text-white">Isolation &amp; Timeout (max. 5s)</h4>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Docker startet mit <code>--network none</code> als Non-Root (1000:1000). Überschreitet der Code 5 Sekunden, greift der Timeout-Kill mit Exit-Code 124.
+                <h4 className="text-xs font-semibold text-white">Isolation &amp; Timeout (max. 10s)</h4>
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
+                  Docker startet mit <code className="text-zinc-200 bg-white/5 px-1 py-0.5 rounded">--network none</code> als Non-Root (1000:1000). Bei Zeitüberschreitung greift der Timeout-Kill mit Exit-Code 124.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-slate-800 bg-slate-950/60 space-y-2">
-                <span className="text-[10px] font-mono font-bold text-purple-400 uppercase bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
+              <div className="p-4 rounded-xl border border-white/[0.06] bg-zinc-950/60 space-y-2">
+                <span className="text-[10px] font-mono font-medium text-zinc-300 uppercase bg-white/[0.05] px-2 py-0.5 rounded border border-white/10">
                   Schritt 5–6: Egress &amp; Audit (A6)
                 </span>
                 <h4 className="text-xs font-semibold text-white">Cleanup &amp; Metriken</h4>
-                <p className="text-[11px] text-slate-400 leading-relaxed">
-                  Temporäre Verzeichnisse werden im <code>finally</code>-Block restlos gelöscht. Metadaten (stdout, stderr, exitCode, ms) gehen als JSON zurück.
+                <p className="text-[11px] text-zinc-400 leading-relaxed">
+                  Temporäre Verzeichnisse werden im <code className="text-zinc-200 bg-white/5 px-1 py-0.5 rounded">finally</code>-Block restlos gelöscht. Metadaten (stdout, stderr, exitCode, ms) gehen als JSON zurück.
                 </p>
               </div>
             </div>
@@ -290,14 +295,14 @@ export const ArchitecturePage: React.FC = () => {
 
       {/* Tab Inhalt: MDX Dokumentation */}
       {activeTab === 'docs' && (
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 md:p-8 backdrop-blur-sm">
+        <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 md:p-8 backdrop-blur-sm shadow-xl">
           <MdxRenderer content={ARCHITECTURE_DOC_MD} />
         </div>
       )}
 
       {/* Tab Inhalt: Benchmark & Messwerte Vergleich */}
       {activeTab === 'benchmarks' && (
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 md:p-8 backdrop-blur-sm">
+        <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 md:p-8 backdrop-blur-sm shadow-xl">
           <BenchmarkComparison />
         </div>
       )}

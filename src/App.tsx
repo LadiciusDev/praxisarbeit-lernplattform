@@ -10,7 +10,7 @@ import { ArchitecturePage } from './pages/ArchitecturePage';
 export function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+      <div className="flex min-h-screen flex-col bg-[#090a0f] text-zinc-100 selection:bg-white/20 selection:text-white">
         <Navbar />
 
         <main className="flex-1 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

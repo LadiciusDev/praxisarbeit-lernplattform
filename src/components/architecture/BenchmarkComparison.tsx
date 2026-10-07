@@ -8,7 +8,6 @@ import {
   Cpu, 
   Award, 
   Check, 
-  ArrowRight, 
   Lock, 
   Clock, 
   HardDrive, 
@@ -206,190 +205,177 @@ export const BenchmarkComparison: React.FC = () => {
   });
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Intro Header */}
-      <div className="border-b border-slate-800/80 pb-5">
+      <div className="border-b border-white/[0.08] pb-5">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold">
-            <BarChart3 className="h-3.5 w-3.5" />
-            <span>Wissenschaftliche Reale Messreihe (Hetzner Cloud)</span>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-zinc-300 text-xs font-mono">
+            <BarChart3 className="h-3.5 w-3.5 text-zinc-400" />
+            <span>Reale Messreihe • Hetzner Cloud (BSD time -l)</span>
           </div>
-          <span className="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
-            BSD time -l Messinstrument
+          <span className="text-xs font-mono text-zinc-500">
+            Baseline: Terraform v1.16.4 vs. OpenTofu v1.12.6
           </span>
         </div>
-        <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
-          Benchmark-Evaluation: Terraform vs. OpenTofu &amp; OpenTofu (Encrypted)
+        <h2 className="text-lg md:text-xl font-bold text-white tracking-tight">
+          Benchmark-Evaluation &amp; Kriterien-Matrix (K1–K5)
         </h2>
-        <p className="text-xs md:text-sm text-slate-400 mt-1 max-w-4xl leading-relaxed">
-          Gegenüberstellung der gemessenen Bereitstellungszeiten, Memory-Footprints und CPU-Instruktionen nach den 
-          Evaluationskriterien <strong>K1–K5</strong>. Ergänzt um die native Client-Side State Encryption von OpenTofu.
+        <p className="text-xs md:text-sm text-zinc-400 mt-1 max-w-3xl leading-relaxed">
+          Gegenüberstellung der gemessenen Bereitstellungszeiten, Arbeitsspeicher-Profile und Krypto-Overheads im Hetzner Cloud Zwei-VM-Setup.
         </p>
       </div>
 
-      {/* KPI Highlight Cards (Direct % Delta to Terraform) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* KPI Highlight Cards (Minimalist & Direct) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* KPI 1: Cold Apply */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4.5 backdrop-blur-sm relative overflow-hidden group hover:border-slate-700 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/10 transition-colors" />
-          <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-2">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <Zap className="h-3.5 w-3.5 text-cyan-400" />
+        <div className="rounded-xl border border-white/[0.08] bg-zinc-900/40 p-4 backdrop-blur-sm space-y-2.5">
+          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+            <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
+              <Zap className="h-3.5 w-3.5 text-zinc-400" />
               Cold Apply (Neu)
             </span>
-            <span className="text-[11px] text-purple-400">TF: 71.2s</span>
+            <span className="text-[11px] text-zinc-500">TF: 71.2s</span>
           </div>
-          <div className="text-2xl font-black text-white font-mono tracking-tight flex items-baseline gap-2">
-            <span>67.46s</span>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          <div className="flex items-baseline justify-between">
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">67.46s</span>
+            <span className="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
               -5.3%
             </span>
           </div>
-          <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-            <span className="text-emerald-300 flex items-center gap-1">
-              <Lock className="h-3 w-3" /> Encrypted: 57.90s
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+            <span className="text-zinc-400 flex items-center gap-1">
+              <Lock className="h-3 w-3 text-emerald-400" /> Encrypted: 57.9s
             </span>
-            <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-              -18.7% ggü. TF
-            </span>
+            <span className="text-emerald-400 font-semibold">-18.7%</span>
           </div>
         </div>
 
         {/* KPI 2: Warm Apply */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4.5 backdrop-blur-sm relative overflow-hidden group hover:border-slate-700 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
-          <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-2">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <Clock className="h-3.5 w-3.5 text-blue-400" />
+        <div className="rounded-xl border border-white/[0.08] bg-zinc-900/40 p-4 backdrop-blur-sm space-y-2.5">
+          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+            <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
+              <Clock className="h-3.5 w-3.5 text-zinc-400" />
               Warm Apply (No-Op)
             </span>
-            <span className="text-[11px] text-purple-400">TF: 2.99s</span>
+            <span className="text-[11px] text-zinc-500">TF: 2.99s</span>
           </div>
-          <div className="text-2xl font-black text-white font-mono tracking-tight flex items-baseline gap-2">
-            <span>2.07s</span>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          <div className="flex items-baseline justify-between">
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">2.07s</span>
+            <span className="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
               -30.8%
             </span>
           </div>
-          <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-            <span className="text-amber-300 flex items-center gap-1">
-              <Lock className="h-3 w-3" /> Encrypted: 4.29s
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+            <span className="text-zinc-400 flex items-center gap-1">
+              <Lock className="h-3 w-3 text-amber-400" /> Encrypted: 4.29s
             </span>
-            <span className="text-[11px] font-mono font-bold text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded">
-              +43.5% ggü. TF
-            </span>
+            <span className="text-amber-400 font-semibold">+43.5%</span>
           </div>
         </div>
 
         {/* KPI 3: Peak RAM */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4.5 backdrop-blur-sm relative overflow-hidden group hover:border-slate-700 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors" />
-          <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-2">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <Cpu className="h-3.5 w-3.5 text-emerald-400" />
-              Peak Memory (RSS)
+        <div className="rounded-xl border border-white/[0.08] bg-zinc-900/40 p-4 backdrop-blur-sm space-y-2.5">
+          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+            <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
+              <Cpu className="h-3.5 w-3.5 text-zinc-400" />
+              Peak RAM (RSS)
             </span>
-            <span className="text-[11px] text-purple-400">TF: 84.6 MB</span>
+            <span className="text-[11px] text-zinc-500">TF: 84.6 MB</span>
           </div>
-          <div className="text-2xl font-black text-white font-mono tracking-tight flex items-baseline gap-2">
-            <span>77.53 MB</span>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          <div className="flex items-baseline justify-between">
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">77.53 MB</span>
+            <span className="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
               -8.3%
             </span>
           </div>
-          <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-            <span className="text-emerald-300 flex items-center gap-1">
-              <Lock className="h-3 w-3" /> Encrypted: 78.32 MB
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+            <span className="text-zinc-400 flex items-center gap-1">
+              <Lock className="h-3 w-3 text-emerald-400" /> Encrypted: 78.3 MB
             </span>
-            <span className="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
-              -7.4% ggü. TF
-            </span>
+            <span className="text-emerald-400 font-semibold">-7.4%</span>
           </div>
         </div>
 
         {/* KPI 4: Provider Init */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4.5 backdrop-blur-sm relative overflow-hidden group hover:border-slate-700 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-purple-500/10 transition-colors" />
-          <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-2">
-            <span className="flex items-center gap-1.5 text-slate-300">
-              <HardDrive className="h-3.5 w-3.5 text-purple-400" />
+        <div className="rounded-xl border border-white/[0.08] bg-zinc-900/40 p-4 backdrop-blur-sm space-y-2.5">
+          <div className="flex items-center justify-between text-xs text-zinc-400 font-mono">
+            <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
+              <HardDrive className="h-3.5 w-3.5 text-zinc-400" />
               Provider Init (hcloud)
             </span>
-            <span className="text-[11px] text-purple-400">TF: 4.75s</span>
+            <span className="text-[11px] text-zinc-500">TF: 4.75s</span>
           </div>
-          <div className="text-2xl font-black text-white font-mono tracking-tight flex items-baseline gap-2">
-            <span>2.88s</span>
-            <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          <div className="flex items-baseline justify-between">
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">2.88s</span>
+            <span className="text-xs font-mono font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
               -39.4%
             </span>
           </div>
-          <div className="mt-2.5 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
-            <span className="text-amber-300 flex items-center gap-1">
-              <Lock className="h-3 w-3" /> Encrypted: 5.48s
+          <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+            <span className="text-zinc-400 flex items-center gap-1">
+              <Lock className="h-3 w-3 text-amber-400" /> Encrypted: 5.48s
             </span>
-            <span className="text-[11px] font-mono font-bold text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded">
-              +15.4% ggü. TF
-            </span>
+            <span className="text-amber-400 font-semibold">+15.4%</span>
           </div>
         </div>
       </div>
 
       {/* Filter and Legend Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-950/70 p-3 rounded-2xl border border-slate-800">
-        <div className="flex items-center gap-1.5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-zinc-950 p-2.5 rounded-xl border border-white/[0.08]">
+        <div className="inline-flex items-center gap-1 p-0.5 rounded-lg bg-zinc-900 border border-white/[0.06]">
           <button
             onClick={() => setActiveCategory('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
               activeCategory === 'all'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white'
             }`}
           >
-            Alle Metriken ({BENCHMARK_METRICS.length})
+            Alle ({BENCHMARK_METRICS.length})
           </button>
           <button
             onClick={() => setActiveCategory('runtime')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
               activeCategory === 'runtime'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white'
             }`}
           >
             Laufzeiten (K1)
           </button>
           <button
             onClick={() => setActiveCategory('resource')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`px-3 py-1 rounded-md text-xs font-medium transition-all cursor-pointer ${
               activeCategory === 'resource'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-xs'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white'
             }`}
           >
-            Ressourcen &amp; RAM (K2)
+            Ressourcen (K2)
           </button>
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap items-center gap-3.5 text-xs font-mono">
-          <span className="flex items-center gap-1.5 text-purple-300">
-            <span className="h-3 w-3 rounded-xs bg-linear-to-r from-purple-500 to-indigo-500" />
-            Terraform v1.16.4
+        <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+          <span className="flex items-center gap-1.5 text-zinc-400">
+            <span className="h-2 w-2 rounded-xs bg-violet-400" />
+            Terraform (Baseline)
           </span>
-          <span className="flex items-center gap-1.5 text-cyan-300">
-            <span className="h-3 w-3 rounded-xs bg-linear-to-r from-cyan-400 to-blue-500" />
-            OpenTofu v1.12.6
+          <span className="flex items-center gap-1.5 text-zinc-300">
+            <span className="h-2 w-2 rounded-xs bg-sky-400" />
+            OpenTofu
           </span>
-          <span className="flex items-center gap-1.5 text-emerald-300">
-            <span className="h-3 w-3 rounded-xs bg-linear-to-r from-emerald-400 to-teal-500" />
+          <span className="flex items-center gap-1.5 text-emerald-400">
+            <span className="h-2 w-2 rounded-xs bg-emerald-400" />
             OpenTofu (Encrypted)
           </span>
         </div>
       </div>
 
       {/* Visual Comparison Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
         {filteredMetrics.map((item) => {
-          const maxVal = Math.max(item.terraform, item.openTofu, item.openTofuEncrypted) * 1.15;
+          const maxVal = Math.max(item.terraform, item.openTofu, item.openTofuEncrypted) * 1.12;
           const tfPercent = Math.min(100, Math.round((item.terraform / maxVal) * 100));
           const tofuPercent = Math.min(100, Math.round((item.openTofu / maxVal) * 100));
           const encPercent = Math.min(100, Math.round((item.openTofuEncrypted / maxVal) * 100));
@@ -400,16 +386,16 @@ export const BenchmarkComparison: React.FC = () => {
           return (
             <div
               key={item.id}
-              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4.5 space-y-3.5 backdrop-blur-sm hover:border-slate-700/80 transition-all flex flex-col justify-between"
+              className="rounded-xl border border-white/[0.08] bg-zinc-900/40 p-4 space-y-3 backdrop-blur-sm hover:border-white/15 transition-all flex flex-col justify-between"
             >
               <div>
                 {/* Header: Title & Direct Badges */}
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                      <span>{item.name}</span>
+                    <h4 className="text-xs font-semibold text-white">
+                      {item.name}
                     </h4>
-                    <p className="text-[11px] text-slate-400 leading-snug mt-0.5">{item.description}</p>
+                    <p className="text-[11px] text-zinc-400 leading-snug mt-0.5">{item.description}</p>
                   </div>
                 </div>
 
@@ -417,10 +403,10 @@ export const BenchmarkComparison: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-2 pt-2">
                   {/* Tofu vs TF */}
                   <span
-                    className={`inline-flex items-center gap-1 text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-full border ${
+                    className={`inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-md border ${
                       tofuDiff.isFaster
-                        ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30'
-                        : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                     }`}
                   >
                     {tofuDiff.isFaster ? <TrendingDown className="h-3 w-3" /> : <TrendingUp className="h-3 w-3" />}
@@ -429,10 +415,10 @@ export const BenchmarkComparison: React.FC = () => {
 
                   {/* Encrypted vs TF */}
                   <span
-                    className={`inline-flex items-center gap-1 text-[10px] font-mono font-semibold px-2.5 py-0.5 rounded-full border ${
+                    className={`inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-md border ${
                       encDiff.isFaster
-                        ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-                        : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                        : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                     }`}
                   >
                     <Lock className="h-2.5 w-2.5" />
@@ -440,27 +426,27 @@ export const BenchmarkComparison: React.FC = () => {
                   </span>
                 </div>
 
-                {/* 3 Progress Bars */}
-                <div className="space-y-2.5 pt-3">
+                {/* 3 Sleek Minimalist Progress Bars */}
+                <div className="space-y-2 pt-3">
                   {/* OpenTofu Bar */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px] font-mono">
-                      <span className="text-cyan-300 font-semibold flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-cyan-400" />
+                      <span className="text-zinc-300 font-medium flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
                         OpenTofu
                       </span>
-                      <span className="text-white font-bold">
+                      <span className="text-white font-medium">
                         {item.openTofu} {item.unit}
                         {item.secondOpenTofu && (
-                          <span className="text-slate-400 text-[10px] ml-1 font-normal">
+                          <span className="text-zinc-500 text-[10px] ml-1">
                             ({item.secondOpenTofu} {item.secondUnit})
                           </span>
                         )}
                       </span>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-slate-800/80 overflow-hidden">
+                    <div className="h-1.5 w-full rounded-full bg-zinc-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-cyan-400 to-blue-500 transition-all duration-500"
+                        className="h-full rounded-full bg-sky-400 transition-all duration-300"
                         style={{ width: `${tofuPercent}%` }}
                       />
                     </div>
@@ -469,22 +455,22 @@ export const BenchmarkComparison: React.FC = () => {
                   {/* OpenTofu Encrypted Bar */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px] font-mono">
-                      <span className="text-emerald-300 font-semibold flex items-center gap-1.5">
-                        <Lock className="h-2.5 w-2.5 text-emerald-400" />
+                      <span className="text-zinc-300 font-medium flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                         OpenTofu (Encrypted)
                       </span>
-                      <span className="text-white font-bold">
+                      <span className="text-white font-medium">
                         {item.openTofuEncrypted} {item.unit}
                         {item.secondOpenTofuEncrypted && (
-                          <span className="text-slate-400 text-[10px] ml-1 font-normal">
+                          <span className="text-zinc-500 text-[10px] ml-1">
                             ({item.secondOpenTofuEncrypted} {item.secondUnit})
                           </span>
                         )}
                       </span>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-slate-800/80 overflow-hidden">
+                    <div className="h-1.5 w-full rounded-full bg-zinc-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-emerald-400 to-teal-500 transition-all duration-500"
+                        className="h-full rounded-full bg-emerald-400 transition-all duration-300"
                         style={{ width: `${encPercent}%` }}
                       />
                     </div>
@@ -493,22 +479,22 @@ export const BenchmarkComparison: React.FC = () => {
                   {/* Terraform Bar */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px] font-mono">
-                      <span className="text-purple-300 font-semibold flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-purple-500" />
+                      <span className="text-zinc-400 font-medium flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
                         Terraform (Baseline)
                       </span>
-                      <span className="text-white font-bold">
+                      <span className="text-zinc-300 font-medium">
                         {item.terraform} {item.unit}
                         {item.secondTerraform && (
-                          <span className="text-slate-400 text-[10px] ml-1 font-normal">
+                          <span className="text-zinc-500 text-[10px] ml-1">
                             ({item.secondTerraform} {item.secondUnit})
                           </span>
                         )}
                       </span>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-slate-800/80 overflow-hidden">
+                    <div className="h-1.5 w-full rounded-full bg-zinc-800 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-purple-500 to-indigo-500 transition-all duration-500"
+                        className="h-full rounded-full bg-violet-400 transition-all duration-300"
                         style={{ width: `${tfPercent}%` }}
                       />
                     </div>
@@ -517,8 +503,8 @@ export const BenchmarkComparison: React.FC = () => {
               </div>
 
               {/* Insight Footer */}
-              <div className="pt-2 text-[11px] text-slate-400 border-t border-slate-800/60 leading-relaxed bg-slate-950/30 -mx-4.5 -mb-4.5 p-3 rounded-b-2xl">
-                <span className="text-cyan-400 font-semibold">Analyse: </span>
+              <div className="pt-2 text-[11px] text-zinc-400 border-t border-white/[0.06] leading-relaxed">
+                <span className="text-zinc-300 font-medium">Analyse: </span>
                 {item.insight}
               </div>
             </div>
@@ -527,23 +513,25 @@ export const BenchmarkComparison: React.FC = () => {
       </div>
 
       {/* Detaillierte Messwerte-Matrix (BSD time -l Tabelle) */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden shadow-xl">
+      <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 overflow-hidden shadow-xl backdrop-blur-sm">
         <button
           onClick={() => setShowDetailsTable(!showDetailsTable)}
-          className="w-full flex items-center justify-between p-4 bg-slate-950/80 border-b border-slate-800/80 hover:bg-slate-900/80 transition-colors text-left cursor-pointer"
+          className="w-full flex items-center justify-between p-4 bg-zinc-950/70 border-b border-white/[0.08] hover:bg-zinc-900/70 transition-colors text-left cursor-pointer"
         >
-          <div className="flex items-center gap-2.5">
-            <Activity className="h-4 w-4 text-cyan-400" />
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-zinc-900 border border-white/10 text-zinc-300">
+              <Activity className="h-4 w-4" />
+            </div>
             <div>
-              <span className="text-sm font-bold text-white">
+              <span className="text-sm font-semibold text-white">
                 Detaillierte Hardware- &amp; OS-Messdaten (time -l)
               </span>
-              <span className="text-xs text-slate-400 block font-normal">
+              <span className="text-xs text-zinc-400 block font-normal mt-0.5">
                 Gegenüberstellung von Realzeit, User/Sys CPU, Max RSS, CPU-Instruktionen und Zyklen
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
+          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors">
             <span>{showDetailsTable ? 'Tabelle einklappen' : 'Tabelle ausklappen'}</span>
             {showDetailsTable ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </div>
@@ -553,45 +541,45 @@ export const BenchmarkComparison: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="border-b border-slate-800 bg-slate-950/90 text-slate-300 font-mono text-[11px]">
+                <tr className="border-b border-white/[0.08] bg-zinc-950 text-zinc-400 font-mono text-[11px]">
                   <th className="py-3 px-4">Phase</th>
-                  <th className="py-3 px-4 text-purple-300 bg-purple-950/20">Terraform v1.16.4</th>
-                  <th className="py-3 px-4 text-cyan-300 bg-cyan-950/20">OpenTofu v1.12.6</th>
-                  <th className="py-3 px-4 text-cyan-400 font-semibold">% ggü. TF</th>
-                  <th className="py-3 px-4 text-emerald-300 bg-emerald-950/20">OpenTofu (Encrypted)</th>
-                  <th className="py-3 px-4 text-emerald-400 font-semibold">% ggü. TF</th>
+                  <th className="py-3 px-4 text-zinc-300">Terraform v1.16.4</th>
+                  <th className="py-3 px-4 text-sky-400">OpenTofu v1.12.6</th>
+                  <th className="py-3 px-4 text-zinc-400 font-semibold">% ggü. TF</th>
+                  <th className="py-3 px-4 text-emerald-400">OpenTofu (Encrypted)</th>
+                  <th className="py-3 px-4 text-zinc-400 font-semibold">% ggü. TF</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/70 text-slate-300 font-mono text-[11px]">
+              <tbody className="divide-y divide-white/[0.04] text-zinc-300 font-mono text-[11px]">
                 {BENCHMARK_METRICS.filter(m => m.details).map((m) => {
                   const tofuDiff = calcDelta(m.openTofu, m.terraform);
                   const encDiff = calcDelta(m.openTofuEncrypted, m.terraform);
 
                   return (
-                    <tr key={m.id} className="hover:bg-slate-800/40 transition-colors">
-                      <td className="py-3 px-4 font-bold text-white font-sans">
+                    <tr key={m.id} className="hover:bg-white/[0.02] transition-colors">
+                      <td className="py-3 px-4 font-semibold text-white font-sans">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-cyan-400">•</span>
+                          <span className="text-zinc-500">•</span>
                           {m.shortName}
                         </div>
-                        <span className="text-[10px] text-slate-500 font-mono block">
+                        <span className="text-[10px] text-zinc-500 font-mono block mt-0.5">
                           User: {m.details?.userTimeSec.tf}s / Sys: {m.details?.sysTimeSec.tf}s
                         </span>
                       </td>
 
                       {/* Terraform */}
-                      <td className="py-3 px-4 bg-purple-950/5">
-                        <span className="text-white font-bold text-xs">{m.terraform.toFixed(2)}s</span>
-                        <div className="text-[10px] text-slate-400 mt-0.5">
+                      <td className="py-3 px-4">
+                        <span className="text-zinc-200 font-semibold text-xs">{m.terraform.toFixed(2)}s</span>
+                        <div className="text-[10px] text-zinc-500 mt-0.5">
                           RAM: {m.details?.maxRssMb.tf} MB ({m.details?.maxRssMib.tf} MiB)<br/>
                           Instr: {m.details?.instructionsBillion.tf} Mrd.
                         </div>
                       </td>
 
                       {/* OpenTofu */}
-                      <td className="py-3 px-4 bg-cyan-950/5">
-                        <span className="text-cyan-300 font-bold text-xs">{m.openTofu.toFixed(2)}s</span>
-                        <div className="text-[10px] text-slate-400 mt-0.5">
+                      <td className="py-3 px-4">
+                        <span className="text-sky-300 font-semibold text-xs">{m.openTofu.toFixed(2)}s</span>
+                        <div className="text-[10px] text-zinc-500 mt-0.5">
                           RAM: {m.details?.maxRssMb.tofu} MB ({m.details?.maxRssMib.tofu} MiB)<br/>
                           Instr: {m.details?.instructionsBillion.tofu} Mrd.
                         </div>
@@ -600,7 +588,7 @@ export const BenchmarkComparison: React.FC = () => {
                       {/* Tofu Delta */}
                       <td className="py-3 px-4">
                         <span
-                          className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
+                          className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${
                             tofuDiff.isFaster
                               ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
                               : 'text-amber-400 bg-amber-500/10 border border-amber-500/20'
@@ -611,18 +599,18 @@ export const BenchmarkComparison: React.FC = () => {
                       </td>
 
                       {/* OpenTofu Encrypted */}
-                      <td className="py-3 px-4 bg-emerald-950/5">
-                        <span className="text-emerald-300 font-bold text-xs">{m.openTofuEncrypted.toFixed(2)}s</span>
-                        <div className="text-[10px] text-slate-400 mt-0.5">
+                      <td className="py-3 px-4">
+                        <span className="text-emerald-300 font-semibold text-xs">{m.openTofuEncrypted.toFixed(2)}s</span>
+                        <div className="text-[10px] text-zinc-500 mt-0.5">
                           RAM: {m.details?.maxRssMb.enc} MB ({m.details?.maxRssMib.enc} MiB)<br/>
-                          Instr: {m.details?.instructionsBillion.enc} Mrd. (Krypto-Last)
+                          Instr: {m.details?.instructionsBillion.enc} Mrd.
                         </div>
                       </td>
 
                       {/* Encrypted Delta */}
                       <td className="py-3 px-4">
                         <span
-                          className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
+                          className={`inline-block px-2 py-0.5 rounded text-[10px] font-mono font-semibold ${
                             encDiff.isFaster
                               ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
                               : 'text-amber-400 bg-amber-500/10 border border-amber-500/20'
@@ -642,118 +630,120 @@ export const BenchmarkComparison: React.FC = () => {
 
       {/* K1-K5 Kriterienmatrix Tabelle */}
       <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <Award className="h-4 w-4 text-cyan-400" />
+        <div className="flex items-center gap-2.5">
+          <div className="p-1.5 rounded-md bg-zinc-900 border border-white/10 text-zinc-400">
+            <Award className="h-4 w-4" />
+          </div>
           <h3 className="text-base font-semibold text-white">Systematische Kriterien-Matrix (K1 bis K5)</h3>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-800 shadow-xl">
-          <table className="w-full text-left text-xs border-collapse bg-slate-900/60">
+        <div className="overflow-x-auto rounded-2xl border border-white/[0.08] shadow-xl bg-zinc-900/40">
+          <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-950/80 text-slate-300 font-mono text-[11px]">
-                <th className="py-3 px-4 w-28">Kriterium</th>
-                <th className="py-3 px-4 w-44">Beschreibung</th>
-                <th className="py-3 px-4 text-cyan-300 bg-cyan-950/20">OpenTofu v1.12.6 (inkl. State Encryption)</th>
-                <th className="py-3 px-4 text-purple-300 bg-purple-950/20">Terraform v1.16.4 (HashiCorp/IBM)</th>
-                <th className="py-3 px-4 w-32">Bewertung</th>
+              <tr className="border-b border-white/[0.08] bg-zinc-950 text-zinc-400 font-mono text-[11px]">
+                <th className="py-3 px-4 w-32">Kriterium</th>
+                <th className="py-3 px-4 w-48">Beschreibung</th>
+                <th className="py-3 px-4 text-sky-400">OpenTofu v1.12.6 (inkl. Encryption)</th>
+                <th className="py-3 px-4 text-zinc-300">Terraform v1.16.4 (HashiCorp)</th>
+                <th className="py-3 px-4 w-36">Bewertung</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
+            <tbody className="divide-y divide-white/[0.04] text-zinc-300">
               {/* K1 */}
-              <tr className="hover:bg-slate-800/30 transition-colors">
-                <td className="py-3 px-4 font-bold text-white font-mono flex items-center gap-1.5">
-                  <Zap className="h-3.5 w-3.5 text-cyan-400" />
+              <tr className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 px-4 font-semibold text-white font-mono flex items-center gap-2">
+                  <Zap className="h-3.5 w-3.5 text-zinc-400" />
                   K1: Bereitstellung
                 </td>
-                <td className="py-3 px-4 text-slate-400">Apply-, Plan- und Destroy-Laufzeiten auf Hetzner Cloud.</td>
-                <td className="py-3 px-4 font-medium text-slate-200 bg-cyan-950/10">
-                  Kürzere Init- und Warm-Apply-Zeiten (-30,8% bei Warm Apply, -39,4% bei Init). Bei State Encryption fällt ein messbarer Krypto-Overhead (+43,5% bei Warm Apply) an, der jedoch im Bereich weniger Sekunden liegt.
+                <td className="py-3 px-4 text-zinc-400">Apply-, Plan- und Destroy-Laufzeiten auf Hetzner Cloud.</td>
+                <td className="py-3 px-4 text-zinc-300 leading-relaxed">
+                  Kürzere Init- und Warm-Apply-Zeiten (<strong className="text-white">-30,8%</strong> bei Warm Apply, <strong className="text-white">-39,4%</strong> bei Init). Bei State Encryption fällt ein messbarer Krypto-Overhead (+43,5% bei Warm Apply) an, der jedoch im Bereich weniger Sekunden liegt.
                 </td>
-                <td className="py-3 px-4 text-slate-300 bg-purple-950/10">
-                  Konstante Laufzeiten, jedoch spürbar trägere Provider-Downloads und Modul-Registry-Initialisierungen.
+                <td className="py-3 px-4 text-zinc-400 leading-relaxed">
+                  Konstante Laufzeiten, jedoch messbar trägere Provider-Downloads und Modul-Initialisierungen.
                 </td>
                 <td className="py-3 px-4">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
                     <Check className="h-3 w-3" /> Vorteil OpenTofu
                   </span>
                 </td>
               </tr>
 
               {/* K2 */}
-              <tr className="hover:bg-slate-800/30 transition-colors">
-                <td className="py-3 px-4 font-bold text-white font-mono flex items-center gap-1.5">
-                  <Cpu className="h-3.5 w-3.5 text-cyan-400" />
+              <tr className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 px-4 font-semibold text-white font-mono flex items-center gap-2">
+                  <Cpu className="h-3.5 w-3.5 text-zinc-400" />
                   K2: Ressourcen
                 </td>
-                <td className="py-3 px-4 text-slate-400">Speicherverbrauch (RAM) und CLI-Binary-Footprint auf der VM.</td>
-                <td className="py-3 px-4 font-medium text-slate-200 bg-cyan-950/10">
+                <td className="py-3 px-4 text-zinc-400">Speicherverbrauch (RAM) und CLI-Footprint auf der VM.</td>
+                <td className="py-3 px-4 text-zinc-300 leading-relaxed">
                   106,5 MB Binary (-7,1%), ~74,9–77,5 MB Peak RAM über alle Cloud-Operationen hinweg. Sparsamere Garbage Collection.
                 </td>
-                <td className="py-3 px-4 text-slate-300 bg-purple-950/10">
+                <td className="py-3 px-4 text-zinc-400 leading-relaxed">
                   114,6 MB Binary, ~84,6 MB Peak RAM während paralleler VM- und Routenbereitstellung.
                 </td>
                 <td className="py-3 px-4">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                    <Check className="h-3 w-3" /> Vorteil OpenTofu (-8,3% RAM)
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
+                    <Check className="h-3 w-3" /> Vorteil Tofu (-8,3% RAM)
                   </span>
                 </td>
               </tr>
 
               {/* K3 */}
-              <tr className="hover:bg-slate-800/30 transition-colors">
-                <td className="py-3 px-4 font-bold text-white font-mono flex items-center gap-1.5">
-                  <Shield className="h-3.5 w-3.5 text-cyan-400" />
+              <tr className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 px-4 font-semibold text-white font-mono flex items-center gap-2">
+                  <Shield className="h-3.5 w-3.5 text-zinc-400" />
                   K3: Lizenz &amp; Recht
                 </td>
-                <td className="py-3 px-4 text-slate-400">Lizenzmodell, Auditierbarkeit und Schutz vor Vendor Lock-in.</td>
-                <td className="py-3 px-4 font-medium text-emerald-300 bg-cyan-950/10">
+                <td className="py-3 px-4 text-zinc-400">Lizenzmodell, Auditierbarkeit und Vendor Lock-in Schutz.</td>
+                <td className="py-3 px-4 text-emerald-300 leading-relaxed">
                   <strong>MPL 2.0 (Mozilla Public License)</strong> – Echtes Open Source unter der neutralen <em>Linux Foundation</em>. Keinerlei gewerbliche Nutzungsrestriktionen.
                 </td>
-                <td className="py-3 px-4 text-amber-300 bg-purple-950/10">
+                <td className="py-3 px-4 text-zinc-400 leading-relaxed">
                   <strong>BSL 1.1 (Business Source License)</strong> – Proprietäre Lizenz mit Nutzungsbeschränkungen für konkurrierende Plattformen und SaaS-Angebote.
                 </td>
                 <td className="py-3 px-4">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
                     <Check className="h-3 w-3" /> Klar OpenTofu
                   </span>
                 </td>
               </tr>
 
               {/* K4 */}
-              <tr className="hover:bg-slate-800/30 transition-colors">
-                <td className="py-3 px-4 font-bold text-white font-mono flex items-center gap-1.5">
-                  <FileCheck className="h-3.5 w-3.5 text-cyan-400" />
+              <tr className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 px-4 font-semibold text-white font-mono flex items-center gap-2">
+                  <FileCheck className="h-3.5 w-3.5 text-zinc-400" />
                   K4: Kompatibilität &amp; Features
                 </td>
-                <td className="py-3 px-4 text-slate-400">Statefile-Format, Syntax-Kompatibilität &amp; State-Sicherheit.</td>
-                <td className="py-3 px-4 font-medium text-slate-200 bg-cyan-950/10">
-                  100% kompatibel zu allen HCL-Manifesten (.tf). Bietet zusätzlich <strong>native Client-Side State Encryption</strong> (AES-GCM / PBKDF2), wodurch sensible Hetzner Tokens und Passwörter im Statefile kryptografisch geschützt sind.
+                <td className="py-3 px-4 text-zinc-400">Statefile-Format, Syntax-Kompatibilität &amp; State-Sicherheit.</td>
+                <td className="py-3 px-4 text-zinc-300 leading-relaxed">
+                  100% kompatibel zu allen HCL-Manifesten (.tf). Bietet zusätzlich <strong>native Client-Side State Encryption</strong> (AES-GCM / PBKDF2), wodurch sensible Hetzner Tokens und Secrets kryptografisch geschützt sind.
                 </td>
-                <td className="py-3 px-4 text-slate-300 bg-purple-950/10">
+                <td className="py-3 px-4 text-zinc-400 leading-relaxed">
                   Industriestandard. State Encryption wird nur über kostenpflichtiges HCP Terraform bzw. Enterprise unterstützt.
                 </td>
                 <td className="py-3 px-4">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                    <Check className="h-3 w-3" /> Klar OpenTofu (Encryption)
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
+                    <Check className="h-3 w-3" /> Vorteil OpenTofu
                   </span>
                 </td>
               </tr>
 
               {/* K5 */}
-              <tr className="hover:bg-slate-800/30 transition-colors">
-                <td className="py-3 px-4 font-bold text-white font-mono flex items-center gap-1.5">
-                  <Users className="h-3.5 w-3.5 text-cyan-400" />
+              <tr className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 px-4 font-semibold text-white font-mono flex items-center gap-2">
+                  <Users className="h-3.5 w-3.5 text-zinc-400" />
                   K5: Ökosystem
                 </td>
-                <td className="py-3 px-4 text-slate-400">Registry-Verfügbarkeit, Provider-Support (hcloud) und Dokumentation.</td>
-                <td className="py-3 px-4 font-medium text-slate-200 bg-cyan-950/10">
-                  Eigene <code>get.opentofu.org</code> Registry mit unterbrechungsfreiem Spiegel aller offiziellen Provider (z. B. Hetzner <code>hcloud</code> Provider).
+                <td className="py-3 px-4 text-zinc-400">Registry-Verfügbarkeit, Provider-Support (hcloud) und Docs.</td>
+                <td className="py-3 px-4 text-zinc-300 leading-relaxed">
+                  Eigene <code className="text-zinc-200 bg-white/5 px-1 py-0.5 rounded">get.opentofu.org</code> Registry mit unterbrechungsfreiem Spiegel aller Provider (z. B. Hetzner <code className="text-zinc-200 bg-white/5 px-1 py-0.5 rounded">hcloud</code>).
                 </td>
-                <td className="py-3 px-4 text-slate-300 bg-purple-950/10">
+                <td className="py-3 px-4 text-zinc-400 leading-relaxed">
                   Größtes etabliertes Ökosystem (registry.terraform.io), unübertroffene Community- und Forengröße.
                 </td>
                 <td className="py-3 px-4">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded-full">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 bg-zinc-800/80 px-2.5 py-1 rounded-md border border-white/[0.06]">
                     Gleichwertig
                   </span>
                 </td>
@@ -764,42 +754,46 @@ export const BenchmarkComparison: React.FC = () => {
       </div>
 
       {/* Fazit Box für die Praxisarbeit */}
-      <div className="rounded-2xl border border-cyan-500/30 bg-linear-to-br from-cyan-950/30 via-slate-900 to-slate-950 p-6 space-y-3.5 shadow-xl">
-        <div className="flex items-center gap-2">
-          <Award className="h-5 w-5 text-cyan-400" />
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+      <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 md:p-8 space-y-4 shadow-xl">
+        <div className="flex items-center gap-2.5">
+          <div className="p-1.5 rounded-md bg-zinc-900 border border-white/10 text-zinc-400">
+            <Award className="h-4 w-4" />
+          </div>
+          <h4 className="text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider">
             Wissenschaftliches Fazit für die 20-seitige Ausarbeitung
           </h4>
         </div>
-        <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
-          Für das evaluierte Hetzner Cloud Zwei-VM-Setup erweist sich <strong>OpenTofu</strong> als hervorragender,
-          vollständig kompatibler <em>Drop-in-Replacement</em> für Terraform. Durch die neutrale Governance unter der
-          <strong> Linux Foundation</strong> und die freie <strong>MPL-2.0-Lizenz</strong> eliminiert OpenTofu alle
-          rechtlichen Risiken (K3), bietet einen um <strong>8,3% geringeren RAM-Verbrauch</strong> (K2) und initialisiert 
-          Provider um <strong>39,4% schneller</strong> (K1).
+        <p className="text-xs md:text-sm text-zinc-300 leading-relaxed">
+          Für das evaluierte Hetzner Cloud Zwei-VM-Setup erweist sich <strong className="text-white">OpenTofu</strong> als hervorragender,
+          vollständig kompatibler <em className="text-zinc-200">Drop-in-Replacement</em> für Terraform. Durch die neutrale Governance unter der
+          <strong className="text-white"> Linux Foundation</strong> und die freie <strong className="text-white">MPL-2.0-Lizenz</strong> eliminiert OpenTofu alle
+          rechtlichen Risiken (K3), bietet einen um <strong className="text-emerald-400">8,3% geringeren RAM-Verbrauch</strong> (K2) und initialisiert 
+          Provider um <strong className="text-emerald-400">39,4% schneller</strong> (K1).
         </p>
-        <p className="text-xs md:text-sm text-slate-300 leading-relaxed">
-          Besonders hervorzuheben ist das Feature der <strong>nativen State-Verschlüsselung (State Encryption)</strong>:
+        <p className="text-xs md:text-sm text-zinc-300 leading-relaxed">
+          Besonders hervorzuheben ist das Feature der <strong className="text-white">nativen State-Verschlüsselung (State Encryption)</strong>:
           Während Terraform dieses Feature nur in kommerziellen Enterprise-Lizenzen anbietet, schützt OpenTofu den Cloud-Zustand 
           bereits in der freien Version mit minimalem Rechenaufwand (+1,3s bei Warm Apply, gemessen anhand von 11,27 Mrd. CPU-Instruktionen).
         </p>
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-cyan-300">
-          <span className="flex items-center gap-1">
-            <ArrowRight className="h-3.5 w-3.5" />
-            HCL-Syntax: 100% kompatibel
-          </span>
-          <span className="flex items-center gap-1">
-            <ArrowRight className="h-3.5 w-3.5" />
-            Empfehlung: OpenTofu v1.12.6+
-          </span>
-          <span className="flex items-center gap-1">
-            <ArrowRight className="h-3.5 w-3.5" />
-            State Encryption: Frei verfügbar (K4)
-          </span>
-          <span className="flex items-center gap-1">
-            <ArrowRight className="h-3.5 w-3.5" />
-            Lizenz-Sicherheit: Garantiert (MPL 2.0)
-          </span>
+        
+        {/* Core Key Facts */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+          <div className="p-3 rounded-xl border border-white/[0.06] bg-zinc-950/60 flex flex-col gap-0.5">
+            <span className="text-[10px] text-zinc-500 uppercase font-mono">Syntax-Kompatibilität</span>
+            <span className="text-xs font-semibold text-zinc-200 font-mono">100% HCL Drop-in</span>
+          </div>
+          <div className="p-3 rounded-xl border border-white/[0.06] bg-zinc-950/60 flex flex-col gap-0.5">
+            <span className="text-[10px] text-zinc-500 uppercase font-mono">Empfohlene Version</span>
+            <span className="text-xs font-semibold text-sky-400 font-mono">OpenTofu v1.12.6+</span>
+          </div>
+          <div className="p-3 rounded-xl border border-white/[0.06] bg-zinc-950/60 flex flex-col gap-0.5">
+            <span className="text-[10px] text-zinc-500 uppercase font-mono">State Encryption</span>
+            <span className="text-xs font-semibold text-emerald-400 font-mono">Kostenfrei (K4)</span>
+          </div>
+          <div className="p-3 rounded-xl border border-white/[0.06] bg-zinc-950/60 flex flex-col gap-0.5">
+            <span className="text-[10px] text-zinc-500 uppercase font-mono">Lizenz-Rechtssicherheit</span>
+            <span className="text-xs font-semibold text-zinc-200 font-mono">MPL 2.0 (Linux Fdn)</span>
+          </div>
         </div>
       </div>
     </div>

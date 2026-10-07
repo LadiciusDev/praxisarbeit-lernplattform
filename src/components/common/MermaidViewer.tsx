@@ -74,15 +74,15 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
       theme: 'dark',
       themeVariables: {
         darkMode: true,
-        background: '#020617',
-        primaryColor: '#0284c7',
-        primaryTextColor: '#f8fafc',
-        primaryBorderColor: '#38bdf8',
-        lineColor: '#64748b',
-        secondaryColor: '#1e293b',
-        tertiaryColor: '#0f172a',
+        background: '#090a0f',
+        primaryColor: '#18181b',
+        primaryTextColor: '#fafafa',
+        primaryBorderColor: '#3f3f46',
+        lineColor: '#71717a',
+        secondaryColor: '#18181b',
+        tertiaryColor: '#090a0f',
         fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '15px',
+        fontSize: '14px',
       },
       flowchart: {
         useMaxWidth: false,
@@ -252,11 +252,11 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
   const resolvedMaxWidth = maxWidth || SIZE_WIDTH_MAP[currentSize]?.width || '1400px';
 
   return (
-    <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/70 overflow-hidden shadow-2xl backdrop-blur-sm">
+    <div className="flex flex-col rounded-2xl border border-white/[0.08] bg-zinc-950 overflow-hidden shadow-2xl backdrop-blur-sm">
       {/* Header mit Werkzeugleiste */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-800/90 bg-slate-950/80 px-4 py-3 gap-3">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse" />
+      <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-zinc-950 px-4 py-3 gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className="h-2 w-2 rounded-full bg-zinc-400" />
           <span className="text-xs font-semibold text-white font-mono">{title}</span>
         </div>
 
@@ -264,29 +264,29 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
         <div className="flex flex-wrap items-center gap-2">
           {/* Größen-Auswahl */}
           {showSizeSelector && (
-            <div className="flex items-center gap-1.5 bg-slate-800/90 rounded-lg px-2 py-0.5 border border-slate-700/60">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Größe</span>
+            <div className="flex items-center gap-1.5 bg-zinc-900 rounded-lg px-2 py-0.5 border border-white/10">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400 font-mono font-medium">Größe</span>
               <select
                 value={currentSize}
                 onChange={(e) => setCurrentSize(e.target.value as MermaidDiagramSize)}
-                className="bg-transparent text-xs text-cyan-300 font-medium focus:outline-none cursor-pointer py-0.5 pr-1"
+                className="bg-transparent text-xs text-zinc-200 font-medium focus:outline-none cursor-pointer py-0.5 pr-1 font-mono"
                 title="Standard-Größe des Diagramms einstellen"
               >
-                <option value="sm" className="bg-slate-900 text-slate-200">S (640px)</option>
-                <option value="md" className="bg-slate-900 text-slate-200">M (880px)</option>
-                <option value="lg" className="bg-slate-900 text-slate-200">L (1150px)</option>
-                <option value="xl" className="bg-slate-900 text-slate-200">XL (1400px)</option>
-                <option value="2xl" className="bg-slate-900 text-slate-200">2XL (1650px)</option>
-                <option value="full" className="bg-slate-900 text-slate-200">100% (Voll)</option>
+                <option value="sm" className="bg-zinc-950 text-zinc-200">S (640px)</option>
+                <option value="md" className="bg-zinc-950 text-zinc-200">M (880px)</option>
+                <option value="lg" className="bg-zinc-950 text-zinc-200">L (1150px)</option>
+                <option value="xl" className="bg-zinc-950 text-zinc-200">XL (1400px)</option>
+                <option value="2xl" className="bg-zinc-950 text-zinc-200">2XL (1650px)</option>
+                <option value="full" className="bg-zinc-950 text-zinc-200">100% (Voll)</option>
               </select>
             </div>
           )}
 
           {/* Zoom Buttons */}
-          <div className="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700/60 text-slate-300">
+          <div className="flex items-center bg-zinc-900 rounded-lg p-0.5 border border-white/10 text-zinc-400">
             <button
               onClick={() => setZoom((z) => Math.max(0.4, Number((z - 0.1).toFixed(2))))}
-              className="p-1 hover:text-white transition-colors"
+              className="p-1 hover:text-white transition-colors cursor-pointer"
               title="Verkleinern"
             >
               <ZoomOut className="h-3.5 w-3.5" />
@@ -294,13 +294,13 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
             <button
               onClick={() => setZoom(defaultZoom)}
               title={`Auf Standard (${Math.round(defaultZoom * 100)}%) zurücksetzen`}
-              className="text-[10px] font-mono px-1.5 text-slate-300 hover:text-cyan-300 transition-colors font-semibold"
+              className="text-[10px] font-mono px-1.5 text-zinc-300 hover:text-white transition-colors font-medium cursor-pointer"
             >
               {Math.round(zoom * 100)}%
             </button>
             <button
               onClick={() => setZoom((z) => Math.min(3.0, Number((z + 0.1).toFixed(2))))}
-              className="p-1 hover:text-white transition-colors"
+              className="p-1 hover:text-white transition-colors cursor-pointer"
               title="Vergrößern"
             >
               <ZoomIn className="h-3.5 w-3.5" />
@@ -310,7 +310,7 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
           {/* Copy Mermaid Code */}
           <button
             onClick={handleCopyCode}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-800 px-2.5 py-1 text-xs font-medium text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-zinc-900 px-2.5 py-1 text-xs font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors cursor-pointer"
             title="Mermaid-Quellcode kopieren"
           >
             {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
@@ -321,7 +321,7 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
           <button
             onClick={handleExportSvg}
             disabled={!svgContent || !!error}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs font-semibold text-cyan-300 hover:bg-cyan-500/20 transition-colors disabled:opacity-40"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-zinc-900 px-2.5 py-1 text-xs font-medium text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors disabled:opacity-40 cursor-pointer"
             title="Als SVG Vektordatei exportieren"
           >
             <Download className="h-3.5 w-3.5" />
@@ -333,7 +333,7 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
             <button
               onClick={() => setShowExportMenu(!showExportMenu)}
               disabled={!svgContent || !!error}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-1 text-xs font-semibold text-white shadow-md shadow-cyan-500/20 hover:from-cyan-400 hover:to-blue-500 transition-all active:scale-95 disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1 text-xs font-medium text-zinc-950 hover:bg-zinc-200 transition-all shadow-xs active:scale-[0.98] disabled:opacity-40 cursor-pointer"
               title="Grafik für Abschlussarbeit oder Präsentation exportieren"
             >
               <Download className="h-3.5 w-3.5" />
@@ -344,22 +344,22 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
             {showExportMenu && (
               <div
                 ref={exportMenuRef}
-                className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl border border-slate-800 bg-slate-950/95 p-2 shadow-2xl backdrop-blur-xl z-50 text-xs space-y-1"
+                className="absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl border border-white/[0.08] bg-zinc-950/95 p-2 shadow-2xl backdrop-blur-xl z-50 text-xs space-y-1"
               >
-                <div className="px-2.5 py-1 text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-800/80 mb-1">
+                <div className="px-2.5 py-1 text-[10px] font-mono font-medium text-zinc-400 uppercase tracking-wider border-b border-white/[0.06] mb-1">
                   Design-Variante wählen
                 </div>
 
                 <button
                   onClick={() => handleExportPng('light')}
-                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-900 text-left transition-colors text-slate-200 hover:text-white group"
+                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-zinc-900 text-left transition-colors text-zinc-300 hover:text-white group cursor-pointer"
                 >
                   <Sun className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
                   <div className="flex-1 min-w-0">
                     <div className="font-semibold text-white group-hover:text-amber-300 transition-colors">
                       Druckversion (Weiß)
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-snug mt-0.5 whitespace-normal break-words">
+                    <p className="text-[11px] text-zinc-400 leading-snug mt-0.5 whitespace-normal break-words">
                       Reines Weiß, dunkle Schrift – ideal für den Ausdruck in PDF &amp; Word
                     </p>
                   </div>
@@ -367,14 +367,14 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
 
                 <button
                   onClick={() => handleExportPng('dark')}
-                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-900 text-left transition-colors text-slate-200 hover:text-white group"
+                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-zinc-900 text-left transition-colors text-zinc-300 hover:text-white group cursor-pointer"
                 >
-                  <Moon className="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" />
+                  <Moon className="h-4 w-4 text-zinc-300 shrink-0 mt-0.5" />
                   <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                    <div className="font-semibold text-white group-hover:text-zinc-200 transition-colors">
                       Präsentation (Dunkel)
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-snug mt-0.5 whitespace-normal break-words">
+                    <p className="text-[11px] text-zinc-400 leading-snug mt-0.5 whitespace-normal break-words">
                       Eleganter dunkler Hintergrund für Bildschirme &amp; Folien
                     </p>
                   </div>
@@ -382,14 +382,14 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
 
                 <button
                   onClick={() => handleExportPng('transparent-dark')}
-                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-900 text-left transition-colors text-slate-200 hover:text-white group"
+                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-zinc-900 text-left transition-colors text-zinc-300 hover:text-white group cursor-pointer"
                 >
-                  <Sparkles className="h-4 w-4 text-purple-400 shrink-0 mt-0.5" />
+                  <Sparkles className="h-4 w-4 text-zinc-400 shrink-0 mt-0.5" />
                   <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-white group-hover:text-purple-300 transition-colors">
+                    <div className="font-semibold text-white group-hover:text-zinc-200 transition-colors">
                       Transparent (Dunkles Design)
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-snug mt-0.5 whitespace-normal break-words">
+                    <p className="text-[11px] text-zinc-400 leading-snug mt-0.5 whitespace-normal break-words">
                       Freigestellt ohne Hintergrund – helle Linien für dunkle Folien &amp; Web
                     </p>
                   </div>
@@ -397,14 +397,14 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
 
                 <button
                   onClick={() => handleExportPng('transparent-light')}
-                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-900 text-left transition-colors text-slate-200 hover:text-white group"
+                  className="w-full flex items-start gap-2.5 p-2 rounded-xl hover:bg-zinc-900 text-left transition-colors text-zinc-300 hover:text-white group cursor-pointer"
                 >
-                  <Layers className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <Layers className="h-4 w-4 text-zinc-400 shrink-0 mt-0.5" />
                   <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-white group-hover:text-emerald-300 transition-colors">
+                    <div className="font-semibold text-white group-hover:text-zinc-200 transition-colors">
                       Transparent (Helles Design)
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-snug mt-0.5 whitespace-normal break-words">
+                    <p className="text-[11px] text-zinc-400 leading-snug mt-0.5 whitespace-normal break-words">
                       Freigestellt ohne Hintergrund – dunkle Linien für weiße Seiten &amp; Word
                     </p>
                   </div>
@@ -416,9 +416,9 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
       </div>
 
       {/* Diagramm-Anzeigebereich */}
-      <div className={`relative ${minHeightClass} p-6 md:p-8 flex items-center justify-center overflow-auto bg-slate-950/95`}>
+      <div className={`relative ${minHeightClass} p-6 md:p-8 flex items-center justify-center overflow-auto bg-[#090a0f]`}>
         {error ? (
-          <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-rose-300 max-w-md text-xs flex items-start gap-2.5">
+          <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 p-4 text-rose-300 max-w-md text-xs flex items-start gap-2.5">
             <AlertCircle className="h-4 w-4 shrink-0 text-rose-400 mt-0.5" />
             <div>
               <div className="font-semibold mb-1">Mermaid Syntax-Fehler:</div>
@@ -438,8 +438,8 @@ export const MermaidViewer: React.FC<MermaidViewerProps> = ({
             dangerouslySetInnerHTML={{ __html: svgContent }}
           />
         ) : (
-          <div className="flex items-center gap-2 text-slate-500 text-xs font-mono">
-            <RefreshCw className="h-4 w-4 animate-spin text-cyan-400" />
+          <div className="flex items-center gap-2 text-zinc-500 text-xs font-mono">
+            <RefreshCw className="h-4 w-4 animate-spin text-zinc-400" />
             <span>Rendere Architektur-Diagramm...</span>
           </div>
         )}

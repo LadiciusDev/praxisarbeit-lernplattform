@@ -125,36 +125,38 @@ export const PlaygroundPage = () => {
 
     <div className="space-y-6">
       {/* Playground Header */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 backdrop-blur-sm">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 uppercase tracking-wider">
-              <PlayCircle className="h-4 w-4" />
+      <div className="rounded-2xl border border-white/[0.08] bg-zinc-900/40 p-6 backdrop-blur-sm shadow-xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-zinc-400 uppercase tracking-wider">
+              <PlayCircle className="h-3.5 w-3.5 text-zinc-300" />
               <span>Interaktive Sandbox</span>
             </div>
-            <h1 className="text-2xl font-bold text-white">Code-Playground &amp; Testlabor</h1>
-            <p className="text-xs md:text-sm text-slate-400">
-              Teste beliebigen Code in <strong>Python</strong>, <strong>JavaScript</strong> oder <strong>Java</strong>. 
-              Inklusive automatischem IntelliSense, Syntax-Highlighting und Fehleranalyse.
+            <h1 className="text-xl md:text-2xl font-semibold text-white tracking-tight">Code-Playground &amp; Testlabor</h1>
+            <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-2xl">
+              Teste beliebigen Code in <strong className="text-zinc-200">Python</strong>, <strong className="text-zinc-200">JavaScript</strong> oder <strong className="text-zinc-200">Java</strong>. 
+              Inklusive automatischem IntelliSense, Syntax-Highlighting und direkter Sandbox-Isolation auf der Hetzner Cloud.
             </p>
           </div>
 
           {/* Vorlagen-Auswahl */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-slate-400 font-mono">Vorlage:</span>
-            {currentTemplates.map((tmpl, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleTemplateSelect(idx)}
-                className={`text-xs px-3 py-1.5 rounded-xl border transition-all ${
-                  templateIndex === idx
-                    ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-semibold'
-                    : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {tmpl.label}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <span className="text-xs text-zinc-400 font-mono">Vorlage:</span>
+            <div className="inline-flex p-1 rounded-xl bg-zinc-950 border border-white/[0.08] gap-1">
+              {currentTemplates.map((tmpl, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleTemplateSelect(idx)}
+                  className={`text-xs px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                    templateIndex === idx
+                      ? 'bg-white text-zinc-950 font-medium shadow-xs'
+                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04]'
+                  }`}
+                >
+                  {tmpl.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
