@@ -32,7 +32,7 @@ const SEQUENCE_DIAGRAM_CHART = `sequenceDiagram
     API-->>Client: 200 OK { jobId, stdout, stderr, exitCode, executionTimeMs, timestamp }
 `;
 
-const DEFAULT_MERMAID_CHART = `flowchart TD
+const DEFAULT_MERMAID_CHART = `flowchart LR
     subgraph Internet["Öffentliches Internet"]
         User["Benutzer (Browser)"]
     end
@@ -172,7 +172,7 @@ export const ArchitecturePage: React.FC = () => {
           Hetzner Cloud Zwei-VM-Architektur
         </h1>
         <p className="text-xs md:text-sm text-zinc-400 leading-relaxed max-w-3xl">
-          Live-Visualisierung der evaluierten Cloud-Topologie (Plattform-VM und isolierte Ausführungs-VM). 
+          Live-Visualisierung der evaluierten Cloud-Topologie (Plattform-VM und isolierte Ausführungs-VM).
           Unterstützt stufenlosen Zoom und wissenschaftlichen Multiformat-Export (SVG/PNG).
         </p>
 
@@ -181,11 +181,10 @@ export const ArchitecturePage: React.FC = () => {
           <div className="inline-flex flex-wrap items-center gap-1 p-1 rounded-xl bg-zinc-950 border border-white/[0.08]">
             <button
               onClick={() => handleTabChange('diagram')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                activeTab === 'diagram'
-                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'diagram'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                }`}
             >
               <Eye className="h-3.5 w-3.5" />
               <span>Topologie</span>
@@ -193,11 +192,10 @@ export const ArchitecturePage: React.FC = () => {
 
             <button
               onClick={() => handleTabChange('sequence')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                activeTab === 'sequence'
-                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'sequence'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                }`}
             >
               <GitCommit className="h-3.5 w-3.5" />
               <span>Sequenzablauf</span>
@@ -205,11 +203,10 @@ export const ArchitecturePage: React.FC = () => {
 
             <button
               onClick={() => handleTabChange('docs')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                activeTab === 'docs'
-                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'docs'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                }`}
             >
               <FileCode className="h-3.5 w-3.5" />
               <span>Spezifikation (A1–A7)</span>
@@ -217,11 +214,10 @@ export const ArchitecturePage: React.FC = () => {
 
             <button
               onClick={() => handleTabChange('benchmarks')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                activeTab === 'benchmarks'
-                  ? 'bg-white text-zinc-950 font-semibold shadow-xs'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'benchmarks'
+                ? 'bg-white text-zinc-950 font-semibold shadow-xs'
+                : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+                }`}
             >
               <BarChart3 className="h-3.5 w-3.5" />
               <span>Benchmarks (K1–K5)</span>
