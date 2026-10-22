@@ -85,7 +85,7 @@ const BENCHMARK_METRICS: BenchmarkMetric[] = [
       userTimeSec: { tf: 0.14, tofu: 0.12, enc: 0.38 },
       sysTimeSec: { tf: 0.09, tofu: 0.10, enc: 0.11 },
       maxRssMb: { tf: 84.23, tofu: 76.68, enc: 77.56 },
-      maxRssMib: { tf: 80.33, tofu: 73.13, enc: 73.97 },
+      maxRssMib: { tf: 80.33, tofu: 73.12, enc: 73.97 },
       instructionsBillion: { tf: 1.23, tofu: 1.22, enc: 4.53 },
       cyclesBillion: { tf: 0.51, tofu: 0.56, enc: 1.67 },
     },
